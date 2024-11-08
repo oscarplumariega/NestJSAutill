@@ -3,9 +3,13 @@ import { Budgets } from './budget.entity';
 import { BudgetsService } from './budgets.service';
 import { BudgetsController } from './budgets.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from 'src/utilities/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Budgets])], 
+  imports: [
+    TypeOrmModule.forFeature([Budgets]),
+    AuthModule
+  ], 
   providers: [BudgetsService], 
   controllers: [BudgetsController], 
 })

@@ -6,24 +6,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BudgetsModule = void 0;
+exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
-const budget_entity_1 = require("./budget.entity");
-const budgets_service_1 = require("./budgets.service");
-const budgets_controller_1 = require("./budgets.controller");
-const typeorm_1 = require("@nestjs/typeorm");
-const auth_module_1 = require("../utilities/auth.module");
-let BudgetsModule = class BudgetsModule {
+const passport_1 = require("@nestjs/passport");
+const jwt_strategy_1 = require("./jwt.strategy");
+let AuthModule = class AuthModule {
 };
-exports.BudgetsModule = BudgetsModule;
-exports.BudgetsModule = BudgetsModule = __decorate([
+exports.AuthModule = AuthModule;
+exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([budget_entity_1.Budgets]),
-            auth_module_1.AuthModule
+            passport_1.PassportModule.register({
+                defaultStrategy: 'jwt',
+                property: 'user',
+                session: false,
+            }),
         ],
-        providers: [budgets_service_1.BudgetsService],
-        controllers: [budgets_controller_1.BudgetsController],
+        controllers: [],
+        providers: [jwt_strategy_1.JwtStrategy],
+        exports: [passport_1.PassportModule],
     })
-], BudgetsModule);
-//# sourceMappingURL=budgets.module.js.map
+], AuthModule);
+//# sourceMappingURL=auth.module.js.map

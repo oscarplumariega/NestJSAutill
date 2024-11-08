@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, UseGuards } from '@nestjs/common';
 import { BudgetsService } from './budgets.service';
-import { Request } from 'express';
 import { BudgetDto } from './budget.dto';
 import { Budgets } from './budget.entity';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('Budgets')
+@UseGuards(AuthGuard('jwt'))
 export class BudgetsController {
   constructor(private budgetsService: BudgetsService) {}
 
