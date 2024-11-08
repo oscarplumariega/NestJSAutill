@@ -14,8 +14,8 @@ const typeorm_1 = require("@nestjs/typeorm");
 const budgets_module_1 = require("./budgets/budgets.module");
 const config_service_1 = require("./config/config.service");
 const config_1 = require("@nestjs/config");
-const auth_module_1 = require("./auth/auth.module");
 const users_module_1 = require("./users/users.module");
+const auth_module_1 = require("./auth/auth.module");
 const Joi = require("joi");
 let AppModule = class AppModule {
 };

@@ -12,39 +12,37 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthController = void 0;
+exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
-const auth_service_1 = require("./auth.service");
-let AuthController = class AuthController {
+const auth_service_1 = require("../auth/auth.service");
+let UsersController = class UsersController {
     constructor(authService) {
         this.authService = authService;
     }
     signIn(signInDto) {
-        return this.authService.signIn(signInDto.Email, signInDto.Password);
+        return this.authService.signIn(signInDto.email, signInDto.password);
     }
     register(registerDto) {
         return this.authService.register(registerDto.Email, registerDto.Password);
     }
 };
-exports.AuthController = AuthController;
+exports.UsersController = UsersController;
 __decorate([
-    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     (0, common_1.Post)('login'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
-], AuthController.prototype, "signIn", null);
+], UsersController.prototype, "signIn", null);
 __decorate([
-    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     (0, common_1.Post)('register'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
-], AuthController.prototype, "register", null);
-exports.AuthController = AuthController = __decorate([
-    (0, common_1.Controller)('auth'),
+], UsersController.prototype, "register", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
-], AuthController);
-//# sourceMappingURL=auth.controller.js.map
+], UsersController);
+//# sourceMappingURL=users.controller.js.map

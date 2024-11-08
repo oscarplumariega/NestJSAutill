@@ -21,7 +21,11 @@ let AuthService = class AuthService {
     }
     async signIn(email, pass) {
         const user = await this.usersService.findOneByEmail(email);
-        if (user?.Password !== pass) {
+        if (!user) {
+            throw new common_1.HttpException('Usuario no encontrado', 500);
+        }
+        const isPasswordValid = await bcryptjs.compare(pass, user.Password);
+        if (!isPasswordValid) {
             throw new common_1.UnauthorizedException();
         }
         const payload = { email: user.Email };
