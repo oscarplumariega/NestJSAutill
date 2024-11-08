@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { BudgetsModule } from './budgets/budgets.module';
 import { configService } from './config/config.service';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -17,7 +19,9 @@ import * as Joi from 'joi';
     BudgetsModule,
     TypeOrmModule.forRoot(
       configService.getTypeOrmConfig()
-    )
+    ),
+    AuthModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],

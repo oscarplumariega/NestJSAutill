@@ -2,10 +2,11 @@ import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, UseGuards 
 import { BudgetsService } from './budgets.service';
 import { BudgetDto } from './budget.dto';
 import { Budgets } from './budget.entity';
-import { AuthGuard } from '@nestjs/passport';
+import { AuthGuard } from 'src/auth/auth.guard';
+
 
 @Controller('Budgets')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard)
 export class BudgetsController {
   constructor(private budgetsService: BudgetsService) {}
 
