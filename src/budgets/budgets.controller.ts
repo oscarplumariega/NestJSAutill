@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, UseGuards } from '@nestjs/common';
 import { BudgetsService } from './budgets.service';
-import { BudgetDto } from './budget.dto';
-import { Budgets } from './budget.entity';
+import { BudgetDto } from './dto/budget.dto';
+import { Budgets } from './entities/budget.entity';
 
 @Controller('Budgets')
 export class BudgetsController {
@@ -18,12 +18,12 @@ export class BudgetsController {
   }
 
   @Post() 
-  createBook(@Body() newBudget: BudgetDto): Promise<Budgets> { 
+  createBudget(@Body() newBudget: BudgetDto): Promise<Budgets> { 
     return this.budgetsService.createBudget(newBudget); 
   }
 
   @Delete(':budgetId') 
-  deleteBook(@Param('budgetId') budgetId: number): Promise<Budgets> { 
+  deleteBudget(@Param('budgetId') budgetId: number): Promise<Budgets> { 
     return this.budgetsService.deleteBudget(budgetId);  
   }
 

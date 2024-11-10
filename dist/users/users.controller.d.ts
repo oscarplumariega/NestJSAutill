@@ -1,7 +1,9 @@
-import { AuthService } from 'src/auth/auth.service';
+import { UsersService } from './users.service';
+import { CreateClientDto } from 'src/clients/dto/create-client.dto';
+import { Users } from './user.entity';
 export declare class UsersController {
-    private authService;
-    constructor(authService: AuthService);
-    signIn(signInDto: Record<string, any>): any;
-    register(registerDto: Record<string, any>): any;
+    private usersService;
+    constructor(usersService: UsersService);
+    findUser(email: string): Promise<any>;
+    editBudget(newUser: CreateClientDto): Promise<Users>;
 }

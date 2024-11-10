@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BudgetsController = void 0;
 const common_1 = require("@nestjs/common");
 const budgets_service_1 = require("./budgets.service");
-const budget_dto_1 = require("./budget.dto");
+const budget_dto_1 = require("./dto/budget.dto");
 let BudgetsController = class BudgetsController {
     constructor(budgetsService) {
         this.budgetsService = budgetsService;
@@ -26,10 +26,10 @@ let BudgetsController = class BudgetsController {
     findBudget(budgetId) {
         return this.budgetsService.findBudget(budgetId);
     }
-    createBook(newBudget) {
+    createBudget(newBudget) {
         return this.budgetsService.createBudget(newBudget);
     }
-    deleteBook(budgetId) {
+    deleteBudget(budgetId) {
         return this.budgetsService.deleteBudget(budgetId);
     }
     editBudget(budgetId, newBudget) {
@@ -57,14 +57,14 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [budget_dto_1.BudgetDto]),
     __metadata("design:returntype", Promise)
-], BudgetsController.prototype, "createBook", null);
+], BudgetsController.prototype, "createBudget", null);
 __decorate([
     (0, common_1.Delete)(':budgetId'),
     __param(0, (0, common_1.Param)('budgetId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], BudgetsController.prototype, "deleteBook", null);
+], BudgetsController.prototype, "deleteBudget", null);
 __decorate([
     (0, common_1.Put)(':budgetId'),
     __param(0, (0, common_1.Param)('budgetId')),

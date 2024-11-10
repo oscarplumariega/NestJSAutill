@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { BudgetDto } from './budget.dto';
-import { Budgets } from './budget.entity';
+import { BudgetDto } from './dto/budget.dto';
+import { Budgets } from './entities/budget.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -39,7 +39,7 @@ export class BudgetsService {
         return await this.budgetsRepository.delete({ Id: budgetId});
     }
 
-    async updateBudget(budgetId: number, newBudget: any){
+    async updateBudget(budgetId: number, newBudget: BudgetDto){
         let toUpdate = await this.budgetsRepository.findOne({ where: {Id: budgetId}});
 
         let updated = Object.assign(toUpdate, newBudget);

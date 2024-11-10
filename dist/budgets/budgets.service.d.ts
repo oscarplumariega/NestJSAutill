@@ -1,5 +1,5 @@
-import { BudgetDto } from './budget.dto';
-import { Budgets } from './budget.entity';
+import { BudgetDto } from './dto/budget.dto';
+import { Budgets } from './entities/budget.entity';
 import { Repository } from 'typeorm';
 export declare class BudgetsService {
     private budgetsRepository;
@@ -8,5 +8,5 @@ export declare class BudgetsService {
     findBudget(budgetId: number): Promise<Budgets>;
     createBudget(newBudget: BudgetDto): Promise<BudgetDto & Budgets>;
     deleteBudget(budgetId: number): Promise<any>;
-    updateBudget(budgetId: number, newBudget: any): Promise<any>;
+    updateBudget(budgetId: number, newBudget: BudgetDto): Promise<Budgets & BudgetDto>;
 }

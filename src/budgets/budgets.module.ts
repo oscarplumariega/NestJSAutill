@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { Budgets } from './budget.entity';
+import { Budgets } from './entities/budget.entity';
 import { BudgetsService } from './budgets.service';
 import { BudgetsController } from './budgets.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';

@@ -27,6 +27,11 @@ let UsersService = class UsersService {
     async findOneByEmail(email) {
         return this.usersRepository.findOne({ where: { Email: email } });
     }
+    async updateUser(newClient) {
+        let toUpdate = await this.usersRepository.findOne({ where: { Id: newClient.Id } });
+        let updated = Object.assign(toUpdate, newClient);
+        return this.usersRepository.save(updated);
+    }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([

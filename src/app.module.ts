@@ -7,6 +7,7 @@ import { configService } from './config/config.service';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { ClientsModule } from './clients/clients.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -21,7 +22,8 @@ import * as Joi from 'joi';
       configService.getTypeOrmConfig()
     ),
     AuthModule,
-    UsersModule
+    UsersModule,
+    ClientsModule
   ],
   controllers: [AppController],
   providers: [AppService],

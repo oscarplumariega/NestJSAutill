@@ -9,6 +9,11 @@ async function bootstrap() {
         response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
         next();
     });
+    app.enableCors({
+        allowedHeaders: '*',
+        origin: '*',
+        credentials: true,
+    });
     await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
