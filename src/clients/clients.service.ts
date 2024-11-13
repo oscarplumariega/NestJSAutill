@@ -22,7 +22,7 @@ export class ClientsService {
     const skip = options.skip || 0
 
     const [result, total] = await this.clientsRepository.findAndCount({
-      where: { IdBusiness: options.IdBusiness },
+      where: { IdBusiness: options.userId },
       order: { Name: "ASC" },
       take,
       skip

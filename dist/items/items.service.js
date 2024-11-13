@@ -12,22 +12,19 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClientsService = void 0;
+exports.ItemsService = void 0;
 const common_1 = require("@nestjs/common");
-const client_entity_1 = require("./entities/client.entity");
+const item_entity_1 = require("./entities/item.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
-let ClientsService = class ClientsService {
-    constructor(clientsRepository) {
-        this.clientsRepository = clientsRepository;
-    }
-    createClient(newClient) {
-        return this.clientsRepository.save(newClient);
+let ItemsService = class ItemsService {
+    constructor(itemsRepository) {
+        this.itemsRepository = itemsRepository;
     }
     async findAll(options) {
         const take = options.take || 10;
         const skip = options.skip || 0;
-        const [result, total] = await this.clientsRepository.findAndCount({
+        const [result, total] = await this.itemsRepository.findAndCount({
             where: { IdBusiness: options.userId },
             order: { Name: "ASC" },
             take,
@@ -38,22 +35,25 @@ let ClientsService = class ClientsService {
             count: total
         };
     }
-    async findClient(clientId) {
-        return await this.clientsRepository.findOne({ where: { Id: clientId } });
+    async findItem(itemId) {
+        return await this.itemsRepository.findOne({ where: { Id: itemId } });
     }
-    async deleteClient(clientId) {
-        return await this.clientsRepository.delete({ Id: clientId });
+    createItem(newItem) {
+        return this.itemsRepository.save(newItem);
     }
-    async updateClient(clientId, newClient) {
-        let toUpdate = await this.clientsRepository.findOne({ where: { Id: clientId } });
-        let updated = Object.assign(toUpdate, newClient);
-        return this.clientsRepository.save(updated);
+    async deleteItem(itemId) {
+        return await this.itemsRepository.delete({ Id: itemId });
+    }
+    async updateItem(itemId, newItem) {
+        let toUpdate = await this.itemsRepository.findOne({ where: { Id: itemId } });
+        let updated = Object.assign(toUpdate, newItem);
+        return this.itemsRepository.save(updated);
     }
 };
-exports.ClientsService = ClientsService;
-exports.ClientsService = ClientsService = __decorate([
+exports.ItemsService = ItemsService;
+exports.ItemsService = ItemsService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_2.InjectRepository)(client_entity_1.Clients)),
+    __param(0, (0, typeorm_2.InjectRepository)(item_entity_1.Items)),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], ClientsService);
-//# sourceMappingURL=clients.service.js.map
+], ItemsService);
+//# sourceMappingURL=items.service.js.map

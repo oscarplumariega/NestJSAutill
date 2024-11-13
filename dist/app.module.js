@@ -17,6 +17,7 @@ const config_1 = require("@nestjs/config");
 const users_module_1 = require("./users/users.module");
 const auth_module_1 = require("./auth/auth.module");
 const clients_module_1 = require("./clients/clients.module");
+const items_module_1 = require("./items/items.module");
 const Joi = require("joi");
 let AppModule = class AppModule {
 };
@@ -33,7 +34,8 @@ exports.AppModule = AppModule = __decorate([
             typeorm_1.TypeOrmModule.forRoot(config_service_1.configService.getTypeOrmConfig()),
             auth_module_1.AuthModule,
             users_module_1.UsersModule,
-            clients_module_1.ClientsModule
+            clients_module_1.ClientsModule,
+            items_module_1.ItemsModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

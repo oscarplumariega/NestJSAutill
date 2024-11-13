@@ -12,70 +12,70 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClientsController = void 0;
+exports.ItemsController = void 0;
 const common_1 = require("@nestjs/common");
-const clients_service_1 = require("./clients.service");
-const create_client_dto_1 = require("./dto/create-client.dto");
-const update_client_dto_1 = require("./dto/update-client.dto");
-let ClientsController = class ClientsController {
-    constructor(clientsService) {
-        this.clientsService = clientsService;
+const items_service_1 = require("./items.service");
+const create_item_dto_1 = require("./dto/create-item.dto");
+const update_item_dto_1 = require("./dto/update-item.dto");
+let ItemsController = class ItemsController {
+    constructor(itemsService) {
+        this.itemsService = itemsService;
     }
-    create(createClientDto) {
-        return this.clientsService.createClient(createClientDto);
+    create(createItemDto) {
+        return this.itemsService.createItem(createItemDto);
     }
     findAll(options) {
-        return this.clientsService.findAll(options);
+        return this.itemsService.findAll(options);
     }
     findOne(id) {
-        return this.clientsService.findClient(+id);
+        return this.itemsService.findItem(+id);
     }
-    update(id, updateClientDto) {
-        return this.clientsService.updateClient(+id, updateClientDto);
+    update(id, updateItemDto) {
+        return this.itemsService.updateItem(+id, updateItemDto);
     }
     remove(id) {
-        return this.clientsService.deleteClient(+id);
+        return this.itemsService.deleteItem(+id);
     }
 };
-exports.ClientsController = ClientsController;
+exports.ItemsController = ItemsController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_client_dto_1.CreateClientDto]),
+    __metadata("design:paramtypes", [create_item_dto_1.CreateItemDto]),
     __metadata("design:returntype", void 0)
-], ClientsController.prototype, "create", null);
+], ItemsController.prototype, "create", null);
 __decorate([
     (0, common_1.Post)('getList'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], ClientsController.prototype, "findAll", null);
+], ItemsController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], ClientsController.prototype, "findOne", null);
+], ItemsController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_client_dto_1.UpdateClientDto]),
+    __metadata("design:paramtypes", [String, update_item_dto_1.UpdateItemDto]),
     __metadata("design:returntype", void 0)
-], ClientsController.prototype, "update", null);
+], ItemsController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], ClientsController.prototype, "remove", null);
-exports.ClientsController = ClientsController = __decorate([
-    (0, common_1.Controller)('Clients'),
-    __metadata("design:paramtypes", [clients_service_1.ClientsService])
-], ClientsController);
-//# sourceMappingURL=clients.controller.js.map
+], ItemsController.prototype, "remove", null);
+exports.ItemsController = ItemsController = __decorate([
+    (0, common_1.Controller)('Items'),
+    __metadata("design:paramtypes", [items_service_1.ItemsService])
+], ItemsController);
+//# sourceMappingURL=items.controller.js.map

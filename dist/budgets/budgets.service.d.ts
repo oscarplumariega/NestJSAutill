@@ -6,6 +6,7 @@ export declare class BudgetsService {
     constructor(budgetsRepository: Repository<Budgets>);
     findAll(options: any): Promise<any>;
     findBudget(budgetId: number): Promise<Budgets>;
+    nextBudgetName(options: any): Promise<any>;
     createBudget(newBudget: BudgetDto): Promise<BudgetDto & Budgets>;
     deleteBudget(budgetId: number): Promise<any>;
     updateBudget(budgetId: number, newBudget: BudgetDto): Promise<Budgets & BudgetDto>;

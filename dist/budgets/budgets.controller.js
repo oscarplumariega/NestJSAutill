@@ -26,6 +26,9 @@ let BudgetsController = class BudgetsController {
     findBudget(budgetId) {
         return this.budgetsService.findBudget(budgetId);
     }
+    nextName(options) {
+        return this.budgetsService.nextBudgetName(options);
+    }
     createBudget(newBudget) {
         return this.budgetsService.createBudget(newBudget);
     }
@@ -38,8 +41,8 @@ let BudgetsController = class BudgetsController {
 };
 exports.BudgetsController = BudgetsController;
 __decorate([
-    (0, common_1.Get)(),
-    __param(0, (0, common_1.Query)()),
+    (0, common_1.Post)('getList'),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
@@ -51,6 +54,13 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], BudgetsController.prototype, "findBudget", null);
+__decorate([
+    (0, common_1.Post)('/nextName'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], BudgetsController.prototype, "nextName", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

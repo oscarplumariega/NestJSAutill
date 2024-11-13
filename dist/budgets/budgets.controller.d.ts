@@ -6,6 +6,7 @@ export declare class BudgetsController {
     constructor(budgetsService: BudgetsService);
     findAll(options: any): Promise<Budgets[]>;
     findBudget(budgetId: number): Promise<Budgets>;
+    nextName(options: any): Promise<string>;
     createBudget(newBudget: BudgetDto): Promise<Budgets>;
     deleteBudget(budgetId: number): Promise<Budgets>;
     editBudget(budgetId: number, newBudget: BudgetDto): Promise<Budgets>;

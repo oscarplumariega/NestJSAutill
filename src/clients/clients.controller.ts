@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Put } from '@nestjs/common';
 import { ClientsService } from './clients.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
@@ -13,8 +13,8 @@ export class ClientsController {
     return this.clientsService.createClient(createClientDto);
   }
 
-  @Get()
-  findAll(@Query() options: any): Promise<Clients[]> {
+  @Post('getList')
+  findAll(@Body() options: any): Promise<Clients[]> {
     return this.clientsService.findAll(options);
   }
 
@@ -23,7 +23,7 @@ export class ClientsController {
     return this.clientsService.findClient(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
     return this.clientsService.updateClient(+id, updateClientDto);
   }

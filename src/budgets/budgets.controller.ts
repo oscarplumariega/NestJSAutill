@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { BudgetsService } from './budgets.service';
 import { BudgetDto } from './dto/budget.dto';
 import { Budgets } from './entities/budget.entity';
@@ -7,14 +7,19 @@ import { Budgets } from './entities/budget.entity';
 export class BudgetsController {
   constructor(private budgetsService: BudgetsService) {}
 
-  @Get()
-  findAll(@Query() options: any): Promise<Budgets[]> {
+  @Post('getList')
+  findAll(@Body() options: any): Promise<Budgets[]> {
     return this.budgetsService.findAll(options);
   }
 
   @Get(':budgetId')
   findBudget(@Param('budgetId') budgetId: number): Promise<Budgets> {
     return this.budgetsService.findBudget(budgetId);
+  }
+
+  @Post('/nextName')
+  nextName(@Body() options: any): Promise<string> {
+    return this.budgetsService.nextBudgetName(options);
   }
 
   @Post() 
