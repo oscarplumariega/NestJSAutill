@@ -12,5 +12,6 @@ import { AuthModule } from 'src/utilities/auth.module';
   ], 
   providers: [BudgetsService], 
   controllers: [BudgetsController], 
+  exports: [BudgetsService]
 })
 export class BudgetsModule {}

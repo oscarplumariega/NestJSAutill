@@ -23,6 +23,9 @@ let UsersController = class UsersController {
     findUser(email) {
         return this.usersService.findOneByEmail(email);
     }
+    find(id) {
+        return this.usersService.find(id);
+    }
     editBudget(newUser) {
         return this.usersService.updateUser(newUser);
     }
@@ -35,6 +38,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "findUser", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "find", null);
 __decorate([
     (0, common_1.Put)(),
     __param(0, (0, common_1.Body)()),

@@ -19,17 +19,17 @@ export class ClientsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.clientsService.findClient(+id);
+  findOne(@Param('id') id: number) {
+    return this.clientsService.findClient(id);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
-    return this.clientsService.updateClient(+id, updateClientDto);
+  update(@Param('id') id: number, @Body() updateClientDto: UpdateClientDto) {
+    return this.clientsService.updateClient(id, updateClientDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.clientsService.deleteClient(+id);
+  remove(@Param('id') id: number) {
+    return this.clientsService.deleteClient(id);
   }
 }

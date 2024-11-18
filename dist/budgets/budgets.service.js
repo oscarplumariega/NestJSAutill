@@ -17,9 +17,11 @@ const common_1 = require("@nestjs/common");
 const budget_entity_1 = require("./entities/budget.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
+const mailer_1 = require("@nestjs-modules/mailer");
 let BudgetsService = class BudgetsService {
-    constructor(budgetsRepository) {
+    constructor(budgetsRepository, mailService) {
         this.budgetsRepository = budgetsRepository;
+        this.mailService = mailService;
     }
     async findAll(options) {
         const take = options.take || 10;
@@ -84,11 +86,20 @@ let BudgetsService = class BudgetsService {
         let updated = Object.assign(toUpdate, newBudget);
         return this.budgetsRepository.save(updated);
     }
+    sendEmail(options) {
+        this.mailService.sendMail({
+            from: `${options.from.FullName} <${options.from.Email}>`,
+            to: `${options.to.Email}`,
+            subject: `${options.mail.Name}`,
+            text: 'Precio final ' + options.mail.Price,
+        });
+    }
 };
 exports.BudgetsService = BudgetsService;
 exports.BudgetsService = BudgetsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(budget_entity_1.Budgets)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        mailer_1.MailerService])
 ], BudgetsService);
 //# sourceMappingURL=budgets.service.js.map

@@ -24,6 +24,7 @@ exports.BudgetsModule = BudgetsModule = __decorate([
         ],
         providers: [budgets_service_1.BudgetsService],
         controllers: [budgets_controller_1.BudgetsController],
+        exports: [budgets_service_1.BudgetsService]
     })
 ], BudgetsModule);
 //# sourceMappingURL=budgets.module.js.map

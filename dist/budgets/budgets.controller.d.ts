@@ -10,4 +10,5 @@ export declare class BudgetsController {
     createBudget(newBudget: BudgetDto): Promise<Budgets>;
     deleteBudget(budgetId: number): Promise<Budgets>;
     editBudget(budgetId: number, newBudget: BudgetDto): Promise<Budgets>;
+    sendEmail(options: any): void;
 }

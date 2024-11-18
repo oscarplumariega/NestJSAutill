@@ -18,7 +18,9 @@ const users_module_1 = require("./users/users.module");
 const auth_module_1 = require("./auth/auth.module");
 const clients_module_1 = require("./clients/clients.module");
 const items_module_1 = require("./items/items.module");
+const bills_module_1 = require("./bills/bills.module");
 const Joi = require("joi");
+const mailer_1 = require("@nestjs-modules/mailer");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -26,6 +28,8 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot({
+                envFilePath: '.env',
+                isGlobal: true,
                 validationSchema: Joi.object({
                     ANGULAR_URL: Joi.string()
                 }),
@@ -35,7 +39,17 @@ exports.AppModule = AppModule = __decorate([
             auth_module_1.AuthModule,
             users_module_1.UsersModule,
             clients_module_1.ClientsModule,
-            items_module_1.ItemsModule
+            items_module_1.ItemsModule,
+            bills_module_1.BillsModule,
+            mailer_1.MailerModule.forRoot({
+                transport: {
+                    host: process.env.EMAIL_HOST,
+                    auth: {
+                        user: process.env.EMAIL_USERNAME,
+                        pass: process.env.EMAIL_PASSWORD,
+                    },
+                },
+            }),
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

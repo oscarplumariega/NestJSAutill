@@ -36,4 +36,9 @@ export class BudgetsController {
   editBudget(@Param('budgetId') budgetId: number, @Body() newBudget: BudgetDto): Promise<Budgets> { 
     return this.budgetsService.updateBudget(budgetId, newBudget); 
   }
+
+  @Post('/mailInfo')
+  sendEmail(@Body() options: any){
+    return this.budgetsService.sendEmail(options);
+  }
 }

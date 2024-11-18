@@ -3,12 +3,14 @@ import { BudgetDto } from './dto/budget.dto';
 import { Budgets } from './entities/budget.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { MailerService } from '@nestjs-modules/mailer';
 
 @Injectable()
 export class BudgetsService {
 
     constructor(
         @InjectRepository(Budgets) private budgetsRepository: Repository<Budgets>,
+        private readonly mailService: MailerService
     ) { }
 
     async findAll(options: any): Promise<any> {
@@ -16,10 +18,10 @@ export class BudgetsService {
         const skip = options.skip || 0
 
         const filterObject = {};
-        if(options.filters != null){
+        if (options.filters != null) {
             Object.entries(options.filters)
-            .filter(([, value]) => value !== null)
-            .forEach(([key, value]) => (filterObject[key] = value));
+                .filter(([, value]) => value !== null)
+                .forEach(([key, value]) => (filterObject[key] = value));
         }
 
         filterObject['IdBusiness'] = options.userId;
@@ -31,8 +33,8 @@ export class BudgetsService {
             skip
         })
 
-        let nfd = 1; 
-        if(result.length === 0 && options.filters != null){
+        let nfd = 1;
+        if (result.length === 0 && options.filters != null) {
             nfd = 0;
         }
 
@@ -86,5 +88,14 @@ export class BudgetsService {
         let updated = Object.assign(toUpdate, newBudget);
 
         return this.budgetsRepository.save(updated);
+    }
+
+    sendEmail(options) {
+        this.mailService.sendMail({
+            from: `${options.from.FullName} <${options.from.Email}>`,
+            to: `${options.to.Email}`,
+            subject: `${options.mail.Name}`,
+            text: 'Precio final ' + options.mail.Price,
+        });
     }
 }

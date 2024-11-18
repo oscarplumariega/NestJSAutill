@@ -38,6 +38,9 @@ let BudgetsController = class BudgetsController {
     editBudget(budgetId, newBudget) {
         return this.budgetsService.updateBudget(budgetId, newBudget);
     }
+    sendEmail(options) {
+        return this.budgetsService.sendEmail(options);
+    }
 };
 exports.BudgetsController = BudgetsController;
 __decorate([
@@ -83,6 +86,13 @@ __decorate([
     __metadata("design:paramtypes", [Number, budget_dto_1.BudgetDto]),
     __metadata("design:returntype", Promise)
 ], BudgetsController.prototype, "editBudget", null);
+__decorate([
+    (0, common_1.Post)('/mailInfo'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], BudgetsController.prototype, "sendEmail", null);
 exports.BudgetsController = BudgetsController = __decorate([
     (0, common_1.Controller)('Budgets'),
     __metadata("design:paramtypes", [budgets_service_1.BudgetsService])
