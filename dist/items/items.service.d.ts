@@ -5,6 +5,11 @@ import { Repository } from 'typeorm';
 export declare class ItemsService {
     private itemsRepository;
     constructor(itemsRepository: Repository<Items>);
+    getPage(initialElement: any): {
+        page: number;
+        initialElement: number;
+        finalElement: number;
+    };
     findAllFilter(options: any): Promise<any>;
     findAll(options: any): Promise<any>;
     findItem(itemId: number): Promise<Items>;

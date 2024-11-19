@@ -6,6 +6,11 @@ export declare class BudgetsService {
     private budgetsRepository;
     private readonly mailService;
     constructor(budgetsRepository: Repository<Budgets>, mailService: MailerService);
+    getPage(initialElement: any): {
+        page: number;
+        initialElement: number;
+        finalElement: number;
+    };
     findAll(options: any): Promise<any>;
     findBudget(budgetId: number): Promise<Budgets>;
     nextBudgetName(options: any): Promise<any>;

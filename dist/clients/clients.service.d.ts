@@ -5,6 +5,11 @@ import { Repository } from 'typeorm';
 export declare class ClientsService {
     private clientsRepository;
     constructor(clientsRepository: Repository<Clients>);
+    getPage(initialElement: any): {
+        page: number;
+        initialElement: number;
+        finalElement: number;
+    };
     createClient(newClient: CreateClientDto): Promise<CreateClientDto & Clients>;
     findAllFilter(options: any): Promise<any>;
     findAll(options: any): Promise<any>;
