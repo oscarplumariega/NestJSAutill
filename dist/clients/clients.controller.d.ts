@@ -6,6 +6,7 @@ export declare class ClientsController {
     private readonly clientsService;
     constructor(clientsService: ClientsService);
     create(createClientDto: CreateClientDto): Promise<CreateClientDto & Clients>;
+    findAllFilter(options: any): Promise<Clients[]>;
     findAll(options: any): Promise<Clients[]>;
     findOne(id: number): Promise<Clients>;
     update(id: number, updateClientDto: UpdateClientDto): Promise<Clients & UpdateClientDto>;

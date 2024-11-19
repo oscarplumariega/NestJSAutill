@@ -33,6 +33,9 @@ let BudgetsService = class BudgetsService {
                 .forEach(([key, value]) => (filterObject[key] = value));
         }
         filterObject['IdBusiness'] = options.userId;
+        if (filterObject['Name']) {
+            filterObject['Name'] = (0, typeorm_2.ILike)('%' + filterObject['Name'] + '%');
+        }
         const [result, total] = await this.budgetsRepository.findAndCount({
             where: filterObject,
             order: { Name: "ASC" },
@@ -57,21 +60,23 @@ let BudgetsService = class BudgetsService {
             where: { IdBusiness: options.userId },
             order: { Name: "DESC" }
         });
-        let name = result.Name;
-        let last4 = parseInt(name.substring(name.length - 4));
-        let nextNum = last4 + 1;
-        let nextName = "";
-        if (nextNum.toString().length == 1) {
-            nextName = "-000" + nextNum;
-        }
-        else if (nextNum.toString().length == 2) {
-            nextName = "-00" + nextNum;
-        }
-        else if (nextNum.toString().length == 3) {
-            nextName = "-0" + nextNum;
-        }
-        else if (nextNum.toString().length == 4) {
-            nextName = "-" + nextNum;
+        let nextName = "-0000";
+        if (result != null) {
+            let name = result.Name;
+            let last4 = parseInt(name.substring(name.length - 4));
+            let nextNum = last4 + 1;
+            if (nextNum.toString().length == 1) {
+                nextName = "-000" + nextNum;
+            }
+            else if (nextNum.toString().length == 2) {
+                nextName = "-00" + nextNum;
+            }
+            else if (nextNum.toString().length == 3) {
+                nextName = "-0" + nextNum;
+            }
+            else if (nextNum.toString().length == 4) {
+                nextName = "-" + nextNum;
+            }
         }
         return { name: "Presupuesto" + nextName };
     }
@@ -89,7 +94,7 @@ let BudgetsService = class BudgetsService {
     sendEmail(options) {
         this.mailService.sendMail({
             from: `${options.from.FullName} <${options.from.Email}>`,
-            to: `${options.to.Email}`,
+            to: `"${options.to.Email}, ${options.from.Email}"`,
             subject: `${options.mail.Name}`,
             text: 'Precio final ' + options.mail.Price,
         });

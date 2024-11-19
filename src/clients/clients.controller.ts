@@ -14,6 +14,11 @@ export class ClientsController {
   }
 
   @Post('getList')
+  findAllFilter(@Body() options: any): Promise<Clients[]> {
+    return this.clientsService.findAllFilter(options);
+  }
+
+  @Get('')
   findAll(@Body() options: any): Promise<Clients[]> {
     return this.clientsService.findAll(options);
   }

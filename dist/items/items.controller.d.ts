@@ -6,6 +6,7 @@ export declare class ItemsController {
     private readonly itemsService;
     constructor(itemsService: ItemsService);
     create(createItemDto: CreateItemDto): Promise<CreateItemDto & Items>;
+    findAllFilter(options: any): Promise<Items[]>;
     findAll(options: any): Promise<Items[]>;
     findOne(id: string): Promise<Items>;
     update(id: string, updateItemDto: UpdateItemDto): Promise<Items & UpdateItemDto>;

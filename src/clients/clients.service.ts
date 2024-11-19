@@ -17,25 +17,48 @@ export class ClientsService {
     return this.clientsRepository.save(newClient);
   }
 
-  async findAll(options: any): Promise<any> {
-    const take = options.take || 10
-    const skip = options.skip || 0
+  async findAllFilter(options: any): Promise<any> {
+    console.log(options);
+    const take = options.take
+    const skip = options.skip
+
+    const filterObject = {};
+    if (options.filters != null) {
+      Object.entries(options.filters)
+        .filter(([, value]) => value !== null)
+        .forEach(([key, value]) => (filterObject[key] = value));
+    }
+
+    filterObject['IdBusiness'] = options.userId;
 
     const [result, total] = await this.clientsRepository.findAndCount({
-      where: { IdBusiness: options.userId },
+      where: filterObject,
       order: { Name: "ASC" },
       take,
       skip
     })
+
+    let nfd = 1;
+    if (result.length === 0 && options.filters != null) {
+      nfd = 0;
+    }
+
     return {
       data: result,
-      count: total
+      count: total,
+      noFilterData: nfd
     }
   }
 
+  async findAll(options: any): Promise<any> {
+    return await this.clientsRepository.findAndCount({
+      where: { IdBusiness: options.userId }
+    });
+  }
+
   async findClient(clientId: number): Promise<Clients> {
-    return await this.clientsRepository.findOne({ where: {Id: clientId}});
-}
+    return await this.clientsRepository.findOne({ where: { Id: clientId } });
+  }
 
   async deleteClient(clientId: number): Promise<any> {
     return await this.clientsRepository.delete({ Id: clientId });

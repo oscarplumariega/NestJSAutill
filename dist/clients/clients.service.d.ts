@@ -6,6 +6,7 @@ export declare class ClientsService {
     private clientsRepository;
     constructor(clientsRepository: Repository<Clients>);
     createClient(newClient: CreateClientDto): Promise<CreateClientDto & Clients>;
+    findAllFilter(options: any): Promise<any>;
     findAll(options: any): Promise<any>;
     findClient(clientId: number): Promise<Clients>;
     deleteClient(clientId: number): Promise<any>;

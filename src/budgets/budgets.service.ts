@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { BudgetDto } from './dto/budget.dto';
 import { Budgets } from './entities/budget.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { MailerService } from '@nestjs-modules/mailer';
 
 @Injectable()
@@ -25,6 +25,10 @@ export class BudgetsService {
         }
 
         filterObject['IdBusiness'] = options.userId;
+
+        if(filterObject['Name']){
+            filterObject['Name'] = ILike('%' + filterObject['Name'] + '%');
+        }
 
         const [result, total] = await this.budgetsRepository.findAndCount({
             where: filterObject,
@@ -55,20 +59,23 @@ export class BudgetsService {
             order: { Name: "DESC" }
         })
 
-        let name = result.Name;
-        let last4 = parseInt(name.substring(name.length - 4));
-        let nextNum = last4 + 1;
-        let nextName = "";
+        let nextName = "-0000";
 
-        if (nextNum.toString().length == 1) {
-            nextName = "-000" + nextNum;
-        } else if (nextNum.toString().length == 2) {
-            nextName = "-00" + nextNum;
-        } else if (nextNum.toString().length == 3) {
-            nextName = "-0" + nextNum;
-        }
-        else if (nextNum.toString().length == 4) {
-            nextName = "-" + nextNum;
+        if(result != null){
+            let name = result.Name;
+            let last4 = parseInt(name.substring(name.length - 4));
+            let nextNum = last4 + 1;
+    
+            if (nextNum.toString().length == 1) {
+                nextName = "-000" + nextNum;
+            } else if (nextNum.toString().length == 2) {
+                nextName = "-00" + nextNum;
+            } else if (nextNum.toString().length == 3) {
+                nextName = "-0" + nextNum;
+            }
+            else if (nextNum.toString().length == 4) {
+                nextName = "-" + nextNum;
+            }
         }
 
         return { name: "Presupuesto" + nextName };
@@ -93,7 +100,7 @@ export class BudgetsService {
     sendEmail(options) {
         this.mailService.sendMail({
             from: `${options.from.FullName} <${options.from.Email}>`,
-            to: `${options.to.Email}`,
+            to: `"${options.to.Email}, ${options.from.Email}"`,
             subject: `${options.mail.Name}`,
             text: 'Precio final ' + options.mail.Price,
         });

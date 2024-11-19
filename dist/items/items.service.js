@@ -21,19 +21,36 @@ let ItemsService = class ItemsService {
     constructor(itemsRepository) {
         this.itemsRepository = itemsRepository;
     }
-    async findAll(options) {
-        const take = options.take || 10;
-        const skip = options.skip || 0;
+    async findAllFilter(options) {
+        const take = options.take;
+        const skip = options.skip;
+        const filterObject = {};
+        if (options.filters != null) {
+            Object.entries(options.filters)
+                .filter(([, value]) => value !== null)
+                .forEach(([key, value]) => (filterObject[key] = value));
+        }
+        filterObject['IdBusiness'] = options.userId;
         const [result, total] = await this.itemsRepository.findAndCount({
-            where: { IdBusiness: options.userId },
+            where: filterObject,
             order: { Name: "ASC" },
             take,
             skip
         });
+        let nfd = 1;
+        if (result.length === 0 && options.filters != null) {
+            nfd = 0;
+        }
         return {
             data: result,
-            count: total
+            count: total,
+            noFilterData: nfd
         };
+    }
+    async findAll(options) {
+        return await this.itemsRepository.findAndCount({
+            where: { IdBusiness: options.userId }
+        });
     }
     async findItem(itemId) {
         return await this.itemsRepository.findOne({ where: { Id: itemId } });

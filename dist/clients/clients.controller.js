@@ -24,6 +24,9 @@ let ClientsController = class ClientsController {
     create(createClientDto) {
         return this.clientsService.createClient(createClientDto);
     }
+    findAllFilter(options) {
+        return this.clientsService.findAllFilter(options);
+    }
     findAll(options) {
         return this.clientsService.findAll(options);
     }
@@ -47,6 +50,13 @@ __decorate([
 ], ClientsController.prototype, "create", null);
 __decorate([
     (0, common_1.Post)('getList'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ClientsController.prototype, "findAllFilter", null);
+__decorate([
+    (0, common_1.Get)(''),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

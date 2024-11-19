@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 export declare class ItemsService {
     private itemsRepository;
     constructor(itemsRepository: Repository<Items>);
+    findAllFilter(options: any): Promise<any>;
     findAll(options: any): Promise<any>;
     findItem(itemId: number): Promise<Items>;
     createItem(newItem: CreateItemDto): Promise<CreateItemDto & Items>;

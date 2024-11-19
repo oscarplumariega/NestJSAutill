@@ -24,6 +24,9 @@ let ItemsController = class ItemsController {
     create(createItemDto) {
         return this.itemsService.createItem(createItemDto);
     }
+    findAllFilter(options) {
+        return this.itemsService.findAllFilter(options);
+    }
     findAll(options) {
         return this.itemsService.findAll(options);
     }
@@ -47,6 +50,13 @@ __decorate([
 ], ItemsController.prototype, "create", null);
 __decorate([
     (0, common_1.Post)('getList'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ItemsController.prototype, "findAllFilter", null);
+__decorate([
+    (0, common_1.Get)(''),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
