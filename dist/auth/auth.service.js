@@ -29,6 +29,7 @@ let AuthService = class AuthService {
             throw new common_1.UnauthorizedException();
         }
         const payload = { email: user.Email };
+        process.env.JWT_TOKEN_SECRET = await this.jwtService.signAsync(payload);
         return {
             access_token: await this.jwtService.signAsync(payload),
         };
@@ -46,6 +47,14 @@ let AuthService = class AuthService {
         return {
             message: "User created successfully",
         };
+    }
+    validateToken(token) {
+        if (token === process.env.JWT_TOKEN_SECRET) {
+            return true;
+        }
+        else {
+            return this.jwtService.verify(token, { secret: process.env.JWT_TOKEN_SECRET });
+        }
     }
 };
 exports.AuthService = AuthService;

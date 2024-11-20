@@ -13,17 +13,21 @@ const clients_controller_1 = require("./clients.controller");
 const auth_module_1 = require("../utilities/auth.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const client_entity_1 = require("./entities/client.entity");
+const auth_service_1 = require("../auth/auth.service");
+const jwt_1 = require("@nestjs/jwt");
+const users_service_1 = require("../users/users.service");
+const user_entity_1 = require("../users/entities/user.entity");
 let ClientsModule = class ClientsModule {
 };
 exports.ClientsModule = ClientsModule;
 exports.ClientsModule = ClientsModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([client_entity_1.Clients]),
+            typeorm_1.TypeOrmModule.forFeature([client_entity_1.Clients, user_entity_1.Users]),
             auth_module_1.AuthModule
         ],
         controllers: [clients_controller_1.ClientsController],
-        providers: [clients_service_1.ClientsService],
+        providers: [clients_service_1.ClientsService, auth_service_1.AuthService, jwt_1.JwtService, users_service_1.UsersService],
     })
 ], ClientsModule);
 //# sourceMappingURL=clients.module.js.map

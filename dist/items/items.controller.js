@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const items_service_1 = require("./items.service");
 const create_item_dto_1 = require("./dto/create-item.dto");
 const update_item_dto_1 = require("./dto/update-item.dto");
+const auth_guard_1 = require("../auth/auth.guard");
 let ItemsController = class ItemsController {
     constructor(itemsService) {
         this.itemsService = itemsService;
@@ -86,6 +87,7 @@ __decorate([
 ], ItemsController.prototype, "remove", null);
 exports.ItemsController = ItemsController = __decorate([
     (0, common_1.Controller)('Items'),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     __metadata("design:paramtypes", [items_service_1.ItemsService])
 ], ItemsController);
 //# sourceMappingURL=items.controller.js.map

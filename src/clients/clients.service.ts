@@ -39,7 +39,6 @@ export class ClientsService {
   }
 
   async findAllFilter(options: any): Promise<any> {
-    console.log(options);
     const take = options.take
     const skip = options.skip
 

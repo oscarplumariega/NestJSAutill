@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BillsController = void 0;
 const common_1 = require("@nestjs/common");
 const bills_service_1 = require("./bills.service");
+const auth_guard_1 = require("../auth/auth.guard");
 let BillsController = class BillsController {
     constructor(billsService) {
         this.billsService = billsService;
@@ -53,6 +54,7 @@ __decorate([
 ], BillsController.prototype, "remove", null);
 exports.BillsController = BillsController = __decorate([
     (0, common_1.Controller)('Bills'),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     __metadata("design:paramtypes", [bills_service_1.BillsService])
 ], BillsController);
 //# sourceMappingURL=bills.controller.js.map

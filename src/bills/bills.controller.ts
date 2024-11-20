@@ -1,8 +1,10 @@
-import { Controller, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Param, Delete, UseGuards } from '@nestjs/common';
 import { BillsService } from './bills.service';
 import { Bills } from './entities/bill.entity';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('Bills')
+@UseGuards(AuthGuard)
 export class BillsController {
   constructor(private readonly billsService: BillsService) {}
 

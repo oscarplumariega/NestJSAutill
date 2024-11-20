@@ -13,17 +13,21 @@ const items_controller_1 = require("./items.controller");
 const item_entity_1 = require("./entities/item.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const auth_module_1 = require("../utilities/auth.module");
+const auth_service_1 = require("../auth/auth.service");
+const jwt_1 = require("@nestjs/jwt");
+const users_service_1 = require("../users/users.service");
+const user_entity_1 = require("../users/entities/user.entity");
 let ItemsModule = class ItemsModule {
 };
 exports.ItemsModule = ItemsModule;
 exports.ItemsModule = ItemsModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([item_entity_1.Items]),
+            typeorm_1.TypeOrmModule.forFeature([item_entity_1.Items, user_entity_1.Users]),
             auth_module_1.AuthModule
         ],
         controllers: [items_controller_1.ItemsController],
-        providers: [items_service_1.ItemsService],
+        providers: [items_service_1.ItemsService, auth_service_1.AuthService, jwt_1.JwtService, users_service_1.UsersService],
     })
 ], ItemsModule);
 //# sourceMappingURL=items.module.js.map

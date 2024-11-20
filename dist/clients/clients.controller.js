@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const clients_service_1 = require("./clients.service");
 const create_client_dto_1 = require("./dto/create-client.dto");
 const update_client_dto_1 = require("./dto/update-client.dto");
+const auth_guard_1 = require("../auth/auth.guard");
 let ClientsController = class ClientsController {
     constructor(clientsService) {
         this.clientsService = clientsService;
@@ -86,6 +87,7 @@ __decorate([
 ], ClientsController.prototype, "remove", null);
 exports.ClientsController = ClientsController = __decorate([
     (0, common_1.Controller)('Clients'),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     __metadata("design:paramtypes", [clients_service_1.ClientsService])
 ], ClientsController);
 //# sourceMappingURL=clients.controller.js.map

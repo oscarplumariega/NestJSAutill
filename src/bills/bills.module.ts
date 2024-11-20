@@ -5,14 +5,18 @@ import { Bills } from './entities/bill.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/utilities/auth.module';
 import { BudgetsModule } from 'src/budgets/budgets.module';
+import { Users } from 'src/users/entities/user.entity';
+import { AuthService } from 'src/auth/auth.service';
+import { JwtService } from '@nestjs/jwt';
+import { UsersService } from 'src/users/users.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Bills]),
+    TypeOrmModule.forFeature([Bills, Users]),
     AuthModule,
     BudgetsModule
   ], 
   controllers: [BillsController],
-  providers: [BillsService],
+  providers: [BillsService, AuthService, JwtService, UsersService],
 })
 export class BillsModule {}

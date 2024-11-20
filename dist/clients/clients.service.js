@@ -45,7 +45,6 @@ let ClientsService = class ClientsService {
         return this.clientsRepository.save(newClient);
     }
     async findAllFilter(options) {
-        console.log(options);
         const take = options.take;
         const skip = options.skip;
         const filterObject = {};

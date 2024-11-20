@@ -16,6 +16,7 @@ exports.BudgetsController = void 0;
 const common_1 = require("@nestjs/common");
 const budgets_service_1 = require("./budgets.service");
 const budget_dto_1 = require("./dto/budget.dto");
+const auth_guard_1 = require("../auth/auth.guard");
 let BudgetsController = class BudgetsController {
     constructor(budgetsService) {
         this.budgetsService = budgetsService;
@@ -95,6 +96,7 @@ __decorate([
 ], BudgetsController.prototype, "sendEmail", null);
 exports.BudgetsController = BudgetsController = __decorate([
     (0, common_1.Controller)('Budgets'),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     __metadata("design:paramtypes", [budgets_service_1.BudgetsService])
 ], BudgetsController);
 //# sourceMappingURL=budgets.controller.js.map

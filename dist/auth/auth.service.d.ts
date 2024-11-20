@@ -10,4 +10,5 @@ export declare class AuthService {
     register(email: any, password: any): Promise<{
         message: string;
     }>;
+    validateToken(token: string): any;
 }
