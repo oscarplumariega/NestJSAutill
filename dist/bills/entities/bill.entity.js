@@ -50,6 +50,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], Bills.prototype, "IdBudget", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Boolean)
+], Bills.prototype, "Cashed", void 0);
 exports.Bills = Bills = __decorate([
     (0, typeorm_1.Entity)()
 ], Bills);

@@ -29,6 +29,9 @@ let BillsController = class BillsController {
     remove(billId) {
         return this.billsService.remove(billId);
     }
+    cashed(billId) {
+        return this.billsService.cashed(billId);
+    }
 };
 exports.BillsController = BillsController;
 __decorate([
@@ -52,6 +55,13 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], BillsController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Get)('cashed/:id'),
+    __param(0, (0, common_1.Param)('billId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], BillsController.prototype, "cashed", null);
 exports.BillsController = BillsController = __decorate([
     (0, common_1.Controller)('Bills'),
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),

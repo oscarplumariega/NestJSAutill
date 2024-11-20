@@ -6,4 +6,5 @@ export declare class BillsController {
     findAll(options: any): Promise<Bills[]>;
     create(id: any): Promise<any>;
     remove(billId: number): Promise<Bills>;
+    cashed(billId: number): Promise<Bills>;
 }

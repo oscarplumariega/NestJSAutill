@@ -8,4 +8,5 @@ export declare class Bills {
     DescriptionItems: string;
     Price: number;
     IdBudget: number;
+    Cashed: boolean;
 }

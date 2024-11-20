@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Param, Delete, UseGuards, Get } from '@nestjs/common';
 import { BillsService } from './bills.service';
 import { Bills } from './entities/bill.entity';
 import { AuthGuard } from 'src/auth/auth.guard';
@@ -21,5 +21,10 @@ export class BillsController {
   @Delete(':billId') 
   remove(@Param('billId') billId: number): Promise<Bills> { 
     return this.billsService.remove(billId);  
+  }
+
+  @Get('cashed/:id')
+  cashed(@Param('billId') billId: number){
+    return this.billsService.cashed(billId);
   }
 }

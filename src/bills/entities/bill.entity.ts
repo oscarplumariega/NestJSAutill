@@ -28,4 +28,7 @@ export class Bills {
 
   @Column()
   IdBudget: number;
+
+  @Column()
+  Cashed: boolean;
 }

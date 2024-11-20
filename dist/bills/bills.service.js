@@ -87,6 +87,13 @@ let BillsService = class BillsService {
         await this.budgetService.updateBudget(budget.Id, budget);
         return await this.billsRepository.delete({ Id: billId });
     }
+    async cashed(billId) {
+        let bill = await this.billsRepository.findOne({ where: { Id: billId } });
+        let uBill = bill;
+        uBill.Cashed = true;
+        let updated = Object.assign(bill, uBill);
+        return await this.billsRepository.save(updated);
+    }
 };
 exports.BillsService = BillsService;
 exports.BillsService = BillsService = __decorate([

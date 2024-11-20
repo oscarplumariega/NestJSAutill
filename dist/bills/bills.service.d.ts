@@ -13,4 +13,5 @@ export declare class BillsService {
     findAll(options: any): Promise<any>;
     create(body: any): Promise<any>;
     remove(billId: number): Promise<any>;
+    cashed(billId: number): Promise<Bills>;
 }
