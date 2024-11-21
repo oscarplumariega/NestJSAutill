@@ -24,7 +24,7 @@ export class BillsController {
   }
 
   @Get('cashed/:id')
-  cashed(@Param('billId') billId: number){
+  cashed(@Param('id') billId: number){
     return this.billsService.cashed(billId);
   }
 }

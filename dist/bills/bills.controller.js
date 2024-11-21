@@ -57,7 +57,7 @@ __decorate([
 ], BillsController.prototype, "remove", null);
 __decorate([
     (0, common_1.Get)('cashed/:id'),
-    __param(0, (0, common_1.Param)('billId')),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
