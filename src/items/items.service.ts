@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { Items } from './entities/item.entity';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -45,6 +45,10 @@ export class ItemsService {
     }
 
     filterObject['IdBusiness'] = options.userId;
+
+    if (filterObject['Name']) {
+      filterObject['Name'] = ILike('%' + filterObject['Name'] + '%');
+    }
 
     const [result, total] = await this.itemsRepository.findAndCount({
       where: filterObject,

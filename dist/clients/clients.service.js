@@ -54,6 +54,9 @@ let ClientsService = class ClientsService {
                 .forEach(([key, value]) => (filterObject[key] = value));
         }
         filterObject['IdBusiness'] = options.userId;
+        if (filterObject['Name']) {
+            filterObject['Name'] = (0, typeorm_1.ILike)('%' + filterObject['Name'] + '%');
+        }
         const [result, total] = await this.clientsRepository.findAndCount({
             where: filterObject,
             order: { Name: "ASC" },
