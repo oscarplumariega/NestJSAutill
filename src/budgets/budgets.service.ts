@@ -126,6 +126,13 @@ export class BudgetsService {
             to: `"${options.to.Email}, ${options.from.Email}"`,
             subject: `${options.mail.Name}`,
             text: 'Precio final ' + options.mail.Price,
+            attachments: [
+                {
+                    filename: options.mail.Name + '.pdf',
+                    path: `data:application/pdf;base64,${options.file.split('base64,')[1]}`,
+                    encoding: 'base64'
+                }
+            ]
         });
     }
 }
