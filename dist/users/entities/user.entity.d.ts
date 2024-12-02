@@ -10,4 +10,5 @@ export declare class Users {
     Logo: string;
     Email: string;
     Password: string;
+    DataComplete: boolean;
 }

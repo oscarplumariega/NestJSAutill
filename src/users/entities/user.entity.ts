@@ -34,4 +34,7 @@ export class Users {
 
   @Column({ type: 'varchar', nullable: false })
   Password: string;
+
+  @Column()
+  DataComplete: boolean;
 }

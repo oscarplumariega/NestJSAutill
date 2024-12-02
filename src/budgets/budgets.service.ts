@@ -121,11 +121,18 @@ export class BudgetsService {
     }
 
     sendEmail(options) {
+        console.log(options);
         this.mailService.sendMail({
             from: `${options.from.FullName} <${options.from.Email}>`,
             to: `"${options.to.Email}, ${options.from.Email}"`,
-            subject: `${options.mail.Name}`,
-            text: 'Precio final ' + options.mail.Price,
+            subject: `Presupuesto para ${options.to.Name}`,
+            text: `Estimado/a ${options.to.Name}, 
+            Adjunto te envío el presupuesto detallado. 
+            
+            Atentamente, 
+            ${options.from.FullName} 
+            ${options.from.PhoneNumber}
+            ${options.from.Email}`,
             attachments: [
                 {
                     filename: options.mail.Name + '.pdf',
