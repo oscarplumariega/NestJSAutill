@@ -113,7 +113,6 @@ let BudgetsService = class BudgetsService {
         return this.budgetsRepository.save(updated);
     }
     sendEmail(options) {
-        console.log(options);
         this.mailService.sendMail({
             from: `${options.from.FullName} <${options.from.Email}>`,
             to: `"${options.to.Email}, ${options.from.Email}"`,

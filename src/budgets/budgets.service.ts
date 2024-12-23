@@ -121,7 +121,6 @@ export class BudgetsService {
     }
 
     sendEmail(options) {
-        console.log(options);
         this.mailService.sendMail({
             from: `${options.from.FullName} <${options.from.Email}>`,
             to: `"${options.to.Email}, ${options.from.Email}"`,
