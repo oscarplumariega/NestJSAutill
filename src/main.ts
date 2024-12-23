@@ -7,7 +7,7 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api/v1');
   app.use(function (request: Request, response: Response, next: NextFunction) {
-    response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    response.setHeader('Access-Control-Allow-Origin', 'nestjsautill-production.up.railway.app');
     next();
   });
 
