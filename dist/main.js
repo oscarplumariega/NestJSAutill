@@ -6,15 +6,11 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.setGlobalPrefix('api/v1');
     app.use(function (request, response, next) {
-        response.setHeader('Access-Control-Allow-Origin', 'nestjsautill-production.up.railway.app');
+        response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
         next();
     });
-    app.enableCors({
-        allowedHeaders: '*',
-        origin: '*',
-        credentials: true,
-    });
-    await app.listen(process.env.PORT ?? 3000);
+    app.enableCors();
+    await app.listen(3000);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

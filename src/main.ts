@@ -7,16 +7,19 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api/v1');
   app.use(function (request: Request, response: Response, next: NextFunction) {
-    response.setHeader('Access-Control-Allow-Origin', 'nestjsautill-production.up.railway.app');
+    response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
     next();
   });
 
-  app.enableCors({
+  app.enableCors();
+
+  /*app.enableCors({
     allowedHeaders: '*',
     origin: '*',
+    methods: '*',
     credentials: true,
-  });
+  });*/
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(3000);
 }
 bootstrap();
